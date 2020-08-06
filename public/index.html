@@ -2,11 +2,16 @@
 
 <head>
     <meta charset="utf-8">
+    <title>Chat-App</title>
 </head>
 
 <body>
     <h1>Chat-App</h1>
     <button id="increment">+1</button>
+    <form id="message-form">
+        <input name="message" type="text" placeholder="Message">
+        <button id=" send">send</button>
+    </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
 </body>

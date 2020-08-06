@@ -22,6 +22,11 @@ io.on('connection', (socket) => {
         io.emit('message', msg)
     })
 
+    socket.on('sendLocation', ({ latitude, longitude }) => {
+        const msg = `User shared his location at: https://google.com/maps?q=${latitude},${longitude}`
+        io.emit('message', msg)
+    })
+
     socket.on('disconnect', () => {
         io.emit('message', 'User has left')
     })

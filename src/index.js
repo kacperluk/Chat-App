@@ -31,8 +31,8 @@ io.on('connection', (socket) => {
     })
 
     socket.on('sendLocation', ({ latitude, longitude }, callback) => {
-        const msg = `User shared his location at: https://google.com/maps?q=${latitude},${longitude}`
-        io.emit('message', msg)
+        const msg = `https://google.com/maps?q=${latitude},${longitude}`
+        io.emit('locationMessage', msg)
         callback()
     })
 

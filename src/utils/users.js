@@ -15,7 +15,7 @@ const addUser = ({ id, username, room }) => {
     }
 
     // Check for existing user
-    const existingUser = users.find((usr) => {
+    const existingUser = users.find((user) => {
         return user.room === room && user.username === username
     })
 
@@ -40,14 +40,17 @@ const removeUser = (id) => {
     }
 }
 
-addUser({
-    id: 99,
-    username: 'name',
-    room: 'room1'
-})
+const getUser = (id) => {
+    return users.find((usr) => usr.id === id)
+}
 
-console.log(users)
+const getUsersInRoom = (room) => {
+    return users.filter((usr) => usr.room === room)
+}
 
-const removedUser = removeUser(99)
-console.log(removedUser)
-console.log(users)
+module.exports = {
+    addUser,
+    removeUser,
+    getUser,
+    getUsersInRoom
+}

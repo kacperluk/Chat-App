@@ -7,12 +7,14 @@ const $messageFormButton = $messageForm.querySelector('button')
 const $messages = document.querySelector('#messages')
 
 const $locationButton = document.querySelector('#send-location')
+const $sidebar = document.querySelector('#sidebar')
 
 // Templates
 const messageTemplate = document.querySelector('#message-template').innerHTML
 const locationTemplate = document.querySelector('#location-template').innerHTML
+const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
 
-// Optionst
+// Options
 const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
 
 socket.on('message', (message) => {
@@ -32,6 +34,14 @@ socket.on('locationMessage', (message) => {
         userName: message.username
     })
     $messages.insertAdjacentHTML('beforeend', html)
+})
+
+socket.on('roomData', ({ room, users }) => {
+    const html = Mustache.render(sidebarTemplate, {
+        users,
+        room
+    })
+    $sidebar.innerHTML = html
 })
 
 $messageForm.addEventListener('submit', (e) => {
